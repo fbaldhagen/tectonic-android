@@ -1,38 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-include(":feature:statistics")
-
-
-include(":feature:auth")
-
-
-include(":feature:history")
-
-
-include(":feature:settings")
-
-
-include(":feature:puzzle")
-
-
-include(":feature:home")
-
-
-include(":core:ui")
-
-
-include(":core:designsystem")
-
-
-include(":core:data")
-
-
-include(":core:domain")
-
-
-include(":core:common")
-
-
 pluginManagement {
     repositories {
         google {
@@ -59,3 +26,15 @@ dependencyResolutionManagement {
 
 rootProject.name = "Tectonic"
 include(":app")
+include(":core:common")
+include(":core:domain")
+include(":core:data")
+include(":core:designsystem")
+include(":core:ui")
+
+include(":feature:statistics")
+include(":feature:auth")
+include(":feature:history")
+include(":feature:settings")
+include(":feature:puzzle")
+include(":feature:home")

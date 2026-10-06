@@ -3,6 +3,7 @@
 agp = "9.2.1"
 kotlin = "2.4.20"
 jvmTarget = "17"
+ksp = "2.3.9"
 
 # AndroidX core
 coreKtx = "1.19.1"
@@ -14,8 +15,12 @@ material = "1.14.0"
 # Compose
 composeBom = "2026.09.00"
 
-# Hilt / Dagger
+# Hilt / Dagger / DI
 hilt = "2.60.1"
+javaxInject = "1"
+
+# Room
+room = "2.8.5"
 
 # Navigation 3
 navigation3 = "1.2.0"
@@ -52,6 +57,11 @@ hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref
 hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version = "1.4.0" }  # androidx.hilt stable
 
+# Room
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+
 # Navigation 3
 androidx-navigation3-runtime = { group = "androidx.navigation3", name = "navigation3-runtime", version.ref = "navigation3" }
 androidx-navigation3-ui = { group = "androidx.navigation3", name = "navigation3-ui", version.ref = "navigation3" }
@@ -65,6 +75,8 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "a
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 
 [plugins]
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 
@@ -74,4 +86,7 @@ kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "ko
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
 # Hilt
-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+
+# Room
+androidx-room = { id = "androidx.room", version.ref = "room" }
