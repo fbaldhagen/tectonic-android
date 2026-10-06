@@ -28,7 +28,7 @@ class DefaultPuzzleSolver(
     /**
      * Convenience for the generator: count solutions up to [limit] (normally 2).
      */
-    fun countSolutions(puzzle: Puzzle, limit: Int = 2): Int {
+    override fun countSolutions(puzzle: Puzzle, limit: Int): Int {
         return findAllSolutions(puzzle, limit).size
     }
 
@@ -36,7 +36,7 @@ class DefaultPuzzleSolver(
      * Find a single solution (randomized candidate order).
      * Useful when the generator needs any valid filling of a region layout.
      */
-    fun findOneSolution(puzzle: Puzzle): Map<CellId, Int>? {
+    override fun findOneSolution(puzzle: Puzzle): Map<CellId, Int>? {
         return findAllSolutions(puzzle, limit = 1).firstOrNull()
     }
 

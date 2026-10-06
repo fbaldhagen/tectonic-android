@@ -11,11 +11,12 @@ import dev.fbaldhagen.tectonic.domain.model.PuzzleId
 import dev.fbaldhagen.tectonic.domain.model.Region
 import dev.fbaldhagen.tectonic.domain.model.RegionId
 import dev.fbaldhagen.tectonic.domain.service.PuzzleGenerator
+import dev.fbaldhagen.tectonic.domain.service.PuzzleSolver
 import dev.fbaldhagen.tectonic.domain.service.PuzzleValidator
 import kotlin.random.Random
 
 class DefaultPuzzleGenerator(
-    private val solver: DefaultPuzzleSolver,
+    private val solver: PuzzleSolver,
     private val validator: PuzzleValidator = DefaultPuzzleValidator()
 ) : PuzzleGenerator {
 
