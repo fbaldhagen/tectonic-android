@@ -22,6 +22,29 @@ sealed interface AppError {
     ) : AppError
     // endregion
 
+    // region Game / Puzzle
+    data class CellNotFound(
+        val row: Int,
+        val column: Int,
+        override val message: String = "Cell not found"
+    ) : AppError
+
+    data class CellNotEditable(
+        val row: Int,
+        val column: Int,
+        override val message: String = "Cell is not editable"
+    ) : AppError
+
+    data class InvalidMove(
+        val violations: List<String>,          // or keep a simple description list
+        override val message: String = "Invalid move"
+    ) : AppError
+
+    data object NothingToUndo : AppError {
+        override val message: String = "Nothing to undo"
+    }
+    // endregion
+
     // region Auth-specific
     data object InvalidCredentials : AppError {
         override val message: String = "Incorrect email or password"
@@ -44,6 +67,10 @@ fun AppError.toException(): Exception = when (this) {
     is AppError.Network -> Exception(message, cause)
     is AppError.NoInternet -> Exception(message)
     is AppError.Database -> Exception(message, cause)
+    is AppError.CellNotFound -> Exception(message)
+    is AppError.CellNotEditable -> Exception(message)
+    is AppError.InvalidMove -> Exception(message)
+    is AppError.NothingToUndo -> Exception(message)
     is AppError.InvalidCredentials -> Exception(message)
     is AppError.EmailAlreadyRegistered -> Exception(message)
     is AppError.Unknown -> Exception(message, cause)
