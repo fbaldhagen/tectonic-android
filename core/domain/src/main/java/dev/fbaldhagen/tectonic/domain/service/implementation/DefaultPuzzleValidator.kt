@@ -59,6 +59,10 @@ class DefaultPuzzleValidator : PuzzleValidator {
             if (region.cells != regionCells.map { it.id }.toSet()) {
                 errors += "Region ${region.id.value} cell set does not match cells that reference it"
             }
+
+            if (!isOrthogonallyConnected(region.cells)) {
+                errors += "Region ${region.id.value} is not a connected shape"
+            }
         }
 
         // Every cell must belong to a known region
@@ -150,6 +154,25 @@ class DefaultPuzzleValidator : PuzzleValidator {
         }
 
         return errors
+    }
+
+    private fun isOrthogonallyConnected(cells: Set<CellId>): Boolean {
+        if (cells.isEmpty()) return true
+        val visited = mutableSetOf(cells.first())
+        val queue = ArrayDeque(visited)
+        while (queue.isNotEmpty()) {
+            val current = queue.removeFirst()
+            val next = listOf(
+                CellId(current.row - 1, current.column),
+                CellId(current.row + 1, current.column),
+                CellId(current.row, current.column - 1),
+                CellId(current.row, current.column + 1)
+            )
+            for (candidate in next) {
+                if (candidate in cells && visited.add(candidate)) queue.addLast(candidate)
+            }
+        }
+        return visited.size == cells.size
     }
 
     private fun getNeighbors(cellId: CellId, gridSize: GridSize): List<CellId> {

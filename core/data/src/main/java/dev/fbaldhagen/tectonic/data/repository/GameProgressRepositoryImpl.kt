@@ -28,13 +28,15 @@ class GameProgressRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getMostRecentGame(): TecResult<Game> {
+    override suspend fun getMostRecentGame(): TecResult<Game?> {
         return suspendRunCatching {
             val gameEntity = gameDao.getMostRecent()
-                ?: throw NoSuchElementException("No games could be found")
+                ?: return@suspendRunCatching null
 
             val puzzleEntity = puzzleDao.getById(gameEntity.puzzleId)
-                ?: throw NoSuchElementException("Puzzle for game not found: ${gameEntity.puzzleId}")
+                ?: throw NoSuchElementException(
+                    "Puzzle for game not found: ${gameEntity.puzzleId}"
+                )
 
             gameEntity.toDomain(puzzleEntity.toDomain())
         }

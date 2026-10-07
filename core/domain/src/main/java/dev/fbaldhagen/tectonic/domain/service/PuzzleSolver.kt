@@ -14,9 +14,12 @@ interface PuzzleSolver {
      */
     fun countSolutions(puzzle: Puzzle, limit: Int = 2): Int
 
-    /**
-     * Finds a single solution, or null if the puzzle has none.
-     * Implementations may randomize candidate order.
-     */
+    /** Finds a single solution, or null if the puzzle has none. Deterministic. */
     fun findOneSolution(puzzle: Puzzle): Map<CellId, Int>?
+
+    /**
+     * True when the puzzle can be completed by deduction alone (naked and hidden
+     * singles), without guessing. Implies a unique solution.
+     */
+    fun isSolvableByLogic(puzzle: Puzzle): Boolean
 }

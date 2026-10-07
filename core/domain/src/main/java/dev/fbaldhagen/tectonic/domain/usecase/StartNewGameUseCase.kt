@@ -20,6 +20,7 @@ class StartNewGameUseCase(
     ): TecResult<Game> {
         return when (val puzzleResult = generatePuzzleUseCase(difficulty)) {
             is TecResult.Success -> {
+                println("Puzzle generated successfully: ${puzzleResult.data.id}")
                 val puzzle = puzzleResult.data
 
                 val initialState = PuzzleState(
@@ -39,12 +40,22 @@ class StartNewGameUseCase(
                 )
 
                 when (val saveResult = gameProgressRepository.saveGame(game)) {
-                    is TecResult.Success -> TecResult.Success(game)
-                    is TecResult.Error -> saveResult
+                    is TecResult.Success -> {
+                        println("Game saved successfully: ${game.id}")
+                        TecResult.Success(game)
+                    }
+
+                    is TecResult.Error -> {
+                        println("SaveGame failed: ${saveResult.error}")
+                        saveResult
+                    }
                 }
             }
 
-            is TecResult.Error -> puzzleResult
+            is TecResult.Error -> {
+                println("GeneratePuzzle failed: ${puzzleResult.error}")
+                puzzleResult
+            }
         }
     }
 }
