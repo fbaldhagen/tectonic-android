@@ -43,10 +43,17 @@ dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:domain"))
     implementation(project(":core:data"))
+    implementation(project(":core:navigation"))
+    implementation(project(":core:designsystem"))
+
+    implementation(project(":feature:puzzle"))
 
     // DI
     ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
+
+    // Navigation 3
+    implementation(libs.androidx.navigation3.runtime)
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
