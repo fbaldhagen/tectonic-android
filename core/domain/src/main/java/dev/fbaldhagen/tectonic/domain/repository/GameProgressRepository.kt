@@ -10,7 +10,7 @@ interface GameProgressRepository {
         gameId: GameId
     ): TecResult<Game>
 
-    suspend fun getMostRecentGame(): TecResult<Game>
+    suspend fun getMostRecentGame(): TecResult<Game?>
 
     suspend fun saveGame(
         game: Game
