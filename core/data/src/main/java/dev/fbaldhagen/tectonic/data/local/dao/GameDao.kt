@@ -12,6 +12,9 @@ interface GameDao {
     @Query("SELECT * FROM games WHERE id = :id")
     suspend fun getById(id: String): GameEntity?
 
+    @Query("SELECT * FROM games ORDER BY updatedAt DESC LIMIT 1")
+    suspend fun getMostRecent(): GameEntity?
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(entity: GameEntity)
 

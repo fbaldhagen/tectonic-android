@@ -30,6 +30,19 @@ class PuzzleRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun getMostRecentPuzzle(): TecResult<Puzzle> {
+        return suspendRunCatching {
+            val entity = puzzleDao.getMostRecent()
+                ?: throw NoSuchElementException("No puzzles found.")
+            entity.toDomain()
+        }.mapError { e ->
+            when (e) {
+                is NoSuchElementException -> AppError.Unknown(e.message ?: "Puzzle not found")
+                else -> e.toAppError()
+            }
+        }
+    }
+
     override suspend fun savePuzzle(puzzle: Puzzle): TecResult<Unit> {
         return suspendRunCatching {
             puzzleDao.insert(puzzle.toEntity())
