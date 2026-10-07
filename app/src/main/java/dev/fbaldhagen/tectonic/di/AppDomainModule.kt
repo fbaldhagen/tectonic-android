@@ -25,6 +25,7 @@ import dev.fbaldhagen.tectonic.domain.usecase.CheckSolutionUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.ClearCellUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.GeneratePuzzleUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.GetCurrentGameUseCase
+import dev.fbaldhagen.tectonic.domain.usecase.GetGameUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.MakeMoveUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.StartNewGameUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.UndoMoveUseCase
@@ -98,7 +99,7 @@ object AppDomainModule {
     @Provides
     fun provideGetGameUseCase(
         gameProgressRepository: GameProgressRepository
-    ): GetCurrentGameUseCase = GetCurrentGameUseCase(gameProgressRepository)
+    ): GetGameUseCase = GetGameUseCase(gameProgressRepository)
 
     @Provides
     fun provideMakeMoveUseCase(
