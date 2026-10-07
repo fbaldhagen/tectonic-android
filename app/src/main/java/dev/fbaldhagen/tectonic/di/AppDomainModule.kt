@@ -96,6 +96,11 @@ object AppDomainModule {
     ): GetCurrentGameUseCase = GetCurrentGameUseCase(gameProgressRepository)
 
     @Provides
+    fun provideGetGameUseCase(
+        gameProgressRepository: GameProgressRepository
+    ): GetCurrentGameUseCase = GetCurrentGameUseCase(gameProgressRepository)
+
+    @Provides
     fun provideMakeMoveUseCase(
         gameProgressRepository: GameProgressRepository,
         moveValidator: MoveValidator

@@ -10,6 +10,8 @@ interface PuzzleRepository {
         puzzleId: PuzzleId
     ): TecResult<Puzzle>
 
+    suspend fun getMostRecentPuzzle(): TecResult<Puzzle>
+
     suspend fun savePuzzle(
         puzzle: Puzzle
     ): TecResult<Unit>

@@ -12,6 +12,9 @@ interface PuzzleDao {
     @Query("SELECT * FROM puzzles WHERE id = :id")
     suspend fun getById(id: String): PuzzleEntity?
 
+    @Query("SELECT * FROM puzzles ORDER BY createdAt DESC LIMIT 1")
+    suspend fun getMostRecent(): PuzzleEntity?
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(entity: PuzzleEntity)
 
