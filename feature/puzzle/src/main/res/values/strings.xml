@@ -1,0 +1,20 @@
+<resources>
+    <string name="puzzle_invalid_move">That move violates a puzzle rule.</string>
+    <string name="puzzle_solution_solved">Puzzle solved.</string>
+    <string name="puzzle_solution_incomplete">The puzzle is not complete yet.</string>
+    <string name="puzzle_solution_incorrect">The current solution contains errors.</string>
+    <string name="puzzle_undo">Undo</string>
+    <string name="puzzle_check">Check</string>
+    <string name="puzzle_home">Home</string>
+    <string name="puzzle_difficulty_easy">Difficulty: Easy</string>
+    <string name="puzzle_difficulty_medium">Difficulty: Medium</string>
+    <string name="puzzle_difficulty_hard">Difficulty: Hard</string>
+    <string name="puzzle_new_easy">Easy</string>
+    <string name="puzzle_new_medium">Medium</string>
+    <string name="puzzle_new_hard">Hard</string>
+    <string name="puzzle_no_active_game">There is no active puzzle.</string>
+    <string name="puzzle_generic_error">Something went wrong.</string>
+    <string name="puzzle_start_easy">Start easy puzzle</string>
+    <string name="puzzle_dismiss">Dismiss</string>
+    <string name="puzzle_clear">Clear</string>
+</resources>
