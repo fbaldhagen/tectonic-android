@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Fixed error messages -->
+    <string name="error_cell_not_editable">Cell is not editable</string>
+    <string name="error_cell_not_found">Cell not found</string>
+    <string name="error_already_registered">Email has already been registered</string>
+    <string name="error_invalid_credentials">Invalid credentials</string>
+    <string name="error_invalid_move">Invalid move</string>
+    <string name="error_no_internet">No internet connection</string>
+    <string name="error_nothing_to_undo">Nothing to undo</string>
+</resources>
