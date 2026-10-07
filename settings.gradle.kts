@@ -1,5 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":core:navigation")
+
+
 pluginManagement {
     repositories {
         google {
