@@ -46,6 +46,7 @@ dependencies {
     implementation(project(":core:navigation"))
     implementation(project(":core:designsystem"))
 
+    implementation(project(":feature:home"))
     implementation(project(":feature:puzzle"))
 
     // DI

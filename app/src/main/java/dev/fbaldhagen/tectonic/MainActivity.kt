@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             TectonicApp(
-                startDestination = AppNavKey.Puzzle,
+                startDestination = AppNavKey.Home,
                 entryProviderInstallers = entryProviderInstallers,
             )
         }
