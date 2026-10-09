@@ -1,0 +1,6 @@
+<resources>
+    <string name="statistics_title">Statistics</string>
+    <string name="statistics_back">Back</string>
+    <string name="statistics_coming_soon_title">Coming soon</string>
+    <string name="statistics_coming_soon_description">Your play statistics will appear here.</string>
+</resources>
