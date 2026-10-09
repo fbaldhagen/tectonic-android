@@ -49,6 +49,7 @@ dependencies {
     implementation(project(":feature:home"))
     implementation(project(":feature:puzzle"))
     implementation(project(":feature:statistics"))
+    implementation(project(":feature:history"))
 
     // DI
     ksp(libs.hilt.android.compiler)

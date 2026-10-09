@@ -30,6 +30,10 @@ sealed interface AppNavKey : NavKey {
     @Serializable
     data object History : AppNavKey
 
+    /** Read-only view of a finished game's final board. */
+    @Serializable
+    data class GameReview(val gameId: String) : AppNavKey
+
     @Serializable
     data object Statistics : AppNavKey
 

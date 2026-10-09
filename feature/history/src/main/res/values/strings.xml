@@ -1,0 +1,13 @@
+<resources>
+    <string name="history_title">History</string>
+    <string name="history_back">Back</string>
+    <string name="history_empty_title">No games yet</string>
+    <string name="history_empty_description">Finished games will show up here.</string>
+    <string name="history_row_title">%1$s · %2$s</string>
+    <string name="history_completed_icon">Completed</string>
+    <string name="history_abandoned_icon">Abandoned</string>
+    <string name="review_status">Status</string>
+    <string name="review_time">Time</string>
+    <string name="review_date">Date</string>
+    <string name="review_grid">Grid</string>
+</resources>
