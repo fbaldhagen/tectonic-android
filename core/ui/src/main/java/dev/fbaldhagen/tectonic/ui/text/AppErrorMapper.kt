@@ -24,6 +24,7 @@ fun AppError.toUiText(): UiText = when (this) {
     is AppError.InvalidMove -> UiText.Resource(R.string.error_invalid_move)
     is AppError.NoInternet -> UiText.Resource(R.string.error_no_internet)
     is AppError.NothingToUndo -> UiText.Resource(R.string.error_nothing_to_undo)
+    is AppError.GameNotInProgress -> UiText.Resource(R.string.error_game_not_in_progress)
 
     // These carry a message that's already dynamic (e.g. built from an
     // exception) at the point AppError was created - no fixed resource to map to.
