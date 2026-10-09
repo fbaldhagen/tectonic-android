@@ -5,6 +5,7 @@ import dev.fbaldhagen.tectonic.common.TecResult
 import dev.fbaldhagen.tectonic.domain.model.CellId
 import dev.fbaldhagen.tectonic.domain.model.Game
 import dev.fbaldhagen.tectonic.domain.model.GameId
+import dev.fbaldhagen.tectonic.domain.model.GameStatus
 import dev.fbaldhagen.tectonic.domain.repository.GameProgressRepository
 
 class ClearCellUseCase(
@@ -17,6 +18,10 @@ class ClearCellUseCase(
         return when (val result = gameProgressRepository.getGame(gameId)) {
             is TecResult.Success -> {
                 val game = result.data
+                if (game.status != GameStatus.IN_PROGRESS) {
+                    return TecResult.Error(AppError.GameNotInProgress)
+                }
+
                 val cell = game.puzzle.cells.firstOrNull { it.id == cellId }
 
                 if (cell == null) {
