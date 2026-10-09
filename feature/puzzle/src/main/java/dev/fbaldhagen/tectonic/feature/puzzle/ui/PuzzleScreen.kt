@@ -9,6 +9,7 @@ import dev.fbaldhagen.tectonic.feature.puzzle.presentation.PuzzleViewModel
 @Composable
 fun PuzzleScreen(
     onNavigateHome: () -> Unit,
+    onNavigateToHistory: () -> Unit,
     viewModel: PuzzleViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -17,5 +18,6 @@ fun PuzzleScreen(
         state = uiState,
         onAction = viewModel::onAction,
         onNavigateHome = onNavigateHome,
+        onNavigateToHistory = onNavigateToHistory,
     )
 }
