@@ -18,6 +18,7 @@ import dev.fbaldhagen.tectonic.feature.puzzle.R
 import dev.fbaldhagen.tectonic.feature.puzzle.presentation.PuzzleAction
 import dev.fbaldhagen.tectonic.feature.puzzle.presentation.PuzzleUiMessage
 import dev.fbaldhagen.tectonic.feature.puzzle.presentation.PuzzleUiState
+import dev.fbaldhagen.tectonic.ui.board.TecBoard
 
 @Composable
 fun PuzzleContent(
@@ -47,15 +48,23 @@ fun PuzzleContent(
                     )
                 }
 
-                PuzzleBoard(
-                    grid = state.grid,
+                if (state.isCompleted) {
+                    Text(
+                        text = stringResource(R.string.puzzle_solution_solved),
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.primary,
+                    )
+                }
+
+                TecBoard(
+                    board = state.grid,
                     selectedCell = state.selectedCell,
                     incorrectCells = state.solutionCheck?.incorrectCells.orEmpty(),
                     modifier = Modifier.weight(1f),
                     onCellClick = { onAction(PuzzleAction.SelectCell(it)) },
                 )
 
-                state.selectedCell?.let { it ->
+                state.selectedCell?.takeIf { !state.isCompleted }?.let { it ->
                     PuzzleNumberPad(
                         maxValue = state.grid.cells
                             .firstOrNull { cell -> cell.cellId == it }
@@ -106,12 +115,14 @@ fun PuzzleContent(
                 ) {
                     OutlinedButton(
                         onClick = { onAction(PuzzleAction.Undo) },
+                        enabled = !state.isCompleted,
                         modifier = Modifier.weight(1f),
                     ) {
                         Text(stringResource(R.string.puzzle_undo))
                     }
                     OutlinedButton(
                         onClick = { onAction(PuzzleAction.CheckSolution) },
+                        enabled = !state.isCompleted,
                         modifier = Modifier.weight(1f),
                     ) {
                         Text(stringResource(R.string.puzzle_check))
