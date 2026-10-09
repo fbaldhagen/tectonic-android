@@ -21,6 +21,10 @@ object PuzzleEntryProviderModule {
                 onNavigateHome = {
                     navigator.replaceStack(AppNavKey.Home)
                 },
+                onNavigateToHistory = {
+                    navigator.replaceStack(AppNavKey.Home)
+                    navigator.navigate(AppNavKey.History)
+                },
             )
         }
     }

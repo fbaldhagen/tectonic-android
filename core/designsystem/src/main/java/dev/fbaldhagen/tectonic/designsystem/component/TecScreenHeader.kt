@@ -1,6 +1,7 @@
 package dev.fbaldhagen.tectonic.designsystem.component
 
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -18,6 +19,8 @@ import androidx.compose.ui.unit.dp
 /**
  * Lightweight title row with a back button, for secondary screens that do not
  * use a top app bar.
+ *
+ * @param actions Optional trailing content (icons, menus, etc.) aligned to the end.
  */
 @Composable
 fun TecScreenHeader(
@@ -25,6 +28,7 @@ fun TecScreenHeader(
     onBackClick: () -> Unit,
     backContentDescription: String,
     modifier: Modifier = Modifier,
+    actions: @Composable RowScope.() -> Unit = {},
 ) {
     Row(
         modifier = modifier
@@ -43,7 +47,10 @@ fun TecScreenHeader(
             style = MaterialTheme.typography.titleLarge,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            modifier = Modifier.padding(start = 4.dp),
+            modifier = Modifier
+                .weight(1f)
+                .padding(start = 4.dp),
         )
+        actions()
     }
 }

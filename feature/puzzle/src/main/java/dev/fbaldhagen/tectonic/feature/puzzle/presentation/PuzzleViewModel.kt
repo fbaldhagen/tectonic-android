@@ -9,8 +9,6 @@ import dev.fbaldhagen.tectonic.domain.model.Difficulty
 import dev.fbaldhagen.tectonic.domain.model.Game
 import dev.fbaldhagen.tectonic.domain.model.GameId
 import dev.fbaldhagen.tectonic.domain.model.GameStatus
-import dev.fbaldhagen.tectonic.domain.model.SolutionCheckResult
-import dev.fbaldhagen.tectonic.domain.usecase.CheckSolutionUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.ClearCellUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.GetCurrentGameUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.MakeMoveUseCase
@@ -33,7 +31,6 @@ class PuzzleViewModel @Inject constructor(
     private val makeMoveUseCase: MakeMoveUseCase,
     private val clearCellUseCase: ClearCellUseCase,
     private val undoMoveUseCase: UndoMoveUseCase,
-    private val checkSolutionUseCase: CheckSolutionUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(PuzzleUiState())
@@ -49,7 +46,6 @@ class PuzzleViewModel @Inject constructor(
             is PuzzleAction.EnterValue -> enterValue(action.value)
             PuzzleAction.ClearCell -> clearCell()
             PuzzleAction.Undo -> undo()
-            PuzzleAction.CheckSolution -> checkSolution()
             is PuzzleAction.StartNewGame -> startNewGame(action.difficulty)
             PuzzleAction.DismissMessage -> dismissMessage()
         }
@@ -157,26 +153,6 @@ class PuzzleViewModel @Inject constructor(
         }
     }
 
-    private fun checkSolution() {
-        val gameId = _uiState.value.gameId ?: return
-
-        viewModelScope.launch {
-            when (val result = checkSolutionUseCase(GameId(gameId))) {
-                is TecResult.Success -> {
-                    _uiState.update {
-                        it.copy(
-                            isLoading = false,
-                            solutionCheck = result.data.toUiModel(),
-                            message = null,
-                        )
-                    }
-                }
-
-                is TecResult.Error -> showGenericError()
-            }
-        }
-    }
-
     private fun startNewGame(difficulty: Difficulty) {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true, message = null) }
@@ -204,9 +180,10 @@ class PuzzleViewModel @Inject constructor(
                 difficulty = game.puzzle.difficulty,
                 grid = game.toBoardUiModel(),
                 isCompleted = isCompleted,
+                completionTime = game.result?.duration,
+                canUndo = game.state.moves.isNotEmpty(),
                 selectedCell = if (isCompleted) null else it.selectedCell,
                 moveValidation = null,
-                solutionCheck = null,
                 message = null,
             )
         }
@@ -220,10 +197,4 @@ class PuzzleViewModel @Inject constructor(
             )
         }
     }
-
-    private fun SolutionCheckResult.toUiModel(): PuzzleSolutionCheckUiModel =
-        PuzzleSolutionCheckUiModel(
-            status = status,
-            incorrectCells = incorrectCells,
-        )
 }
