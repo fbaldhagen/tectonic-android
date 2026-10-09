@@ -8,6 +8,7 @@ import dev.fbaldhagen.tectonic.domain.model.CellId
 import dev.fbaldhagen.tectonic.domain.model.Difficulty
 import dev.fbaldhagen.tectonic.domain.model.Game
 import dev.fbaldhagen.tectonic.domain.model.GameId
+import dev.fbaldhagen.tectonic.domain.model.GameStatus
 import dev.fbaldhagen.tectonic.domain.model.SolutionCheckResult
 import dev.fbaldhagen.tectonic.domain.usecase.CheckSolutionUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.ClearCellUseCase
@@ -16,6 +17,7 @@ import dev.fbaldhagen.tectonic.domain.usecase.MakeMoveUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.StartNewGameUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.UndoMoveUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.ValidateMoveUseCase
+import dev.fbaldhagen.tectonic.ui.board.toBoardUiModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -85,6 +87,7 @@ class PuzzleViewModel @Inject constructor(
     }
 
     private fun selectCell(cellId: CellId) {
+        if (_uiState.value.isCompleted) return
         val grid = _uiState.value.grid ?: return
         val cell = grid.cells.firstOrNull { it.cellId == cellId } ?: return
         if (cell.isGiven) return
@@ -180,7 +183,10 @@ class PuzzleViewModel @Inject constructor(
 
             when (val result = startNewGameUseCase(difficulty)) {
                 is TecResult.Success -> showGame(result.data)
-                is TecResult.Error -> showGenericError()
+
+                is TecResult.Error -> {
+                    showGenericError()
+                }
             }
         }
     }
@@ -190,12 +196,15 @@ class PuzzleViewModel @Inject constructor(
     }
 
     private fun showGame(game: Game) {
+        val isCompleted = game.status == GameStatus.COMPLETED
         _uiState.update {
             it.copy(
                 isLoading = false,
                 gameId = game.id.value,
                 difficulty = game.puzzle.difficulty,
-                grid = game.toPuzzleUiGrid(),
+                grid = game.toBoardUiModel(),
+                isCompleted = isCompleted,
+                selectedCell = if (isCompleted) null else it.selectedCell,
                 moveValidation = null,
                 solutionCheck = null,
                 message = null,
