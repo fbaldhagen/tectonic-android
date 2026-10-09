@@ -4,6 +4,7 @@ import dev.fbaldhagen.tectonic.common.AppError
 import dev.fbaldhagen.tectonic.common.TecResult
 import dev.fbaldhagen.tectonic.domain.model.Game
 import dev.fbaldhagen.tectonic.domain.model.GameId
+import dev.fbaldhagen.tectonic.domain.model.GameStatus
 import dev.fbaldhagen.tectonic.domain.repository.GameProgressRepository
 
 class UndoMoveUseCase(
@@ -15,6 +16,10 @@ class UndoMoveUseCase(
         return when (val result = gameProgressRepository.getGame(gameId)) {
             is TecResult.Success -> {
                 val game = result.data
+                if (game.status != GameStatus.IN_PROGRESS) {
+                    return TecResult.Error(AppError.GameNotInProgress)
+                }
+
                 val lastMove = game.state.moves.lastOrNull()
                     ?: return TecResult.Error(AppError.NothingToUndo)
 

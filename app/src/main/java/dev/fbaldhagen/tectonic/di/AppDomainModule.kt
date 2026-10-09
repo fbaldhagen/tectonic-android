@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import dev.fbaldhagen.tectonic.domain.repository.GameHistoryRepository
 import dev.fbaldhagen.tectonic.domain.repository.GameProgressRepository
 import dev.fbaldhagen.tectonic.domain.service.DomainClock
 import dev.fbaldhagen.tectonic.domain.service.GameIdProvider
@@ -21,11 +22,14 @@ import dev.fbaldhagen.tectonic.domain.service.implementation.DefaultPuzzleSeedPr
 import dev.fbaldhagen.tectonic.domain.service.implementation.DefaultPuzzleSolver
 import dev.fbaldhagen.tectonic.domain.service.implementation.DefaultPuzzleValidator
 import dev.fbaldhagen.tectonic.domain.service.implementation.DefaultSolutionChecker
+import dev.fbaldhagen.tectonic.domain.usecase.AbandonGameUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.CheckSolutionUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.ClearCellUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.GeneratePuzzleUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.GetCurrentGameUseCase
+import dev.fbaldhagen.tectonic.domain.usecase.GetGameHistoryUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.GetGameUseCase
+import dev.fbaldhagen.tectonic.domain.usecase.GetInProgressGameUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.MakeMoveUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.StartNewGameUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.UndoMoveUseCase
@@ -104,8 +108,26 @@ object AppDomainModule {
     @Provides
     fun provideMakeMoveUseCase(
         gameProgressRepository: GameProgressRepository,
-        moveValidator: MoveValidator
-    ): MakeMoveUseCase = MakeMoveUseCase(gameProgressRepository, moveValidator)
+        moveValidator: MoveValidator,
+        solutionChecker: SolutionChecker,
+        clock: DomainClock
+    ): MakeMoveUseCase =
+        MakeMoveUseCase(gameProgressRepository, moveValidator, solutionChecker, clock)
+
+    @Provides
+    fun provideAbandonGameUseCase(
+        gameProgressRepository: GameProgressRepository
+    ): AbandonGameUseCase = AbandonGameUseCase(gameProgressRepository)
+
+    @Provides
+    fun provideGetInProgressGameUseCase(
+        gameHistoryRepository: GameHistoryRepository
+    ): GetInProgressGameUseCase = GetInProgressGameUseCase(gameHistoryRepository)
+
+    @Provides
+    fun provideGetGameHistoryUseCase(
+        gameHistoryRepository: GameHistoryRepository
+    ): GetGameHistoryUseCase = GetGameHistoryUseCase(gameHistoryRepository)
 
     @Provides
     fun provideStartNewGameUseCase(
