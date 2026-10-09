@@ -36,12 +36,16 @@ sealed interface AppError {
     ) : AppError
 
     data class InvalidMove(
-        val violations: List<String>,          // or keep a simple description list
+        val violations: List<String>,
         override val message: String = "Invalid move"
     ) : AppError
 
     data object NothingToUndo : AppError {
         override val message: String = "Nothing to undo"
+    }
+
+    data object GameNotInProgress : AppError {
+        override val message: String = "Game is not in progress"
     }
     // endregion
 
@@ -71,6 +75,7 @@ fun AppError.toException(): Exception = when (this) {
     is AppError.CellNotEditable -> Exception(message)
     is AppError.InvalidMove -> Exception(message)
     is AppError.NothingToUndo -> Exception(message)
+    is AppError.GameNotInProgress -> Exception(message)
     is AppError.InvalidCredentials -> Exception(message)
     is AppError.EmailAlreadyRegistered -> Exception(message)
     is AppError.Unknown -> Exception(message, cause)
