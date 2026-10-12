@@ -7,6 +7,7 @@ import dev.fbaldhagen.tectonic.domain.model.GameId
 import dev.fbaldhagen.tectonic.domain.model.GameStatus
 import dev.fbaldhagen.tectonic.domain.model.Puzzle
 import dev.fbaldhagen.tectonic.domain.model.PuzzleState
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Instant
 
 private val converters = TectonicTypeConverters()
@@ -22,7 +23,8 @@ fun GameEntity.toDomain(puzzle: Puzzle): Game {
         state = PuzzleState(values = values, moves = moves),
         status = GameStatus.valueOf(status),
         startedAt = Instant.fromEpochMilliseconds(startedAtEpochMs),
-        result = result
+        result = result,
+        elapsed = elapsedMillis.milliseconds
     )
 }
 
@@ -34,6 +36,7 @@ fun Game.toEntity(): GameEntity {
         startedAtEpochMs = startedAt.toEpochMilliseconds(),
         valuesJson = converters.valuesToJson(state.values),
         movesJson = converters.movesToJson(state.moves),
-        resultJson = converters.gameResultToJson(result)
+        resultJson = converters.gameResultToJson(result),
+        elapsedMillis = elapsed.inWholeMilliseconds
     )
 }
