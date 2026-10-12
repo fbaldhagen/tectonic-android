@@ -8,6 +8,7 @@ import dev.fbaldhagen.tectonic.domain.repository.GameHistoryRepository
 import dev.fbaldhagen.tectonic.domain.repository.GameProgressRepository
 import dev.fbaldhagen.tectonic.domain.service.DomainClock
 import dev.fbaldhagen.tectonic.domain.service.GameIdProvider
+import dev.fbaldhagen.tectonic.domain.service.GameStatisticsCalculator
 import dev.fbaldhagen.tectonic.domain.service.MoveValidator
 import dev.fbaldhagen.tectonic.domain.service.PuzzleGenerator
 import dev.fbaldhagen.tectonic.domain.service.PuzzleSeedProvider
@@ -16,6 +17,7 @@ import dev.fbaldhagen.tectonic.domain.service.PuzzleValidator
 import dev.fbaldhagen.tectonic.domain.service.SolutionChecker
 import dev.fbaldhagen.tectonic.domain.service.implementation.DefaultDomainClock
 import dev.fbaldhagen.tectonic.domain.service.implementation.DefaultGameIdProvider
+import dev.fbaldhagen.tectonic.domain.service.implementation.DefaultGameStatisticsCalculator
 import dev.fbaldhagen.tectonic.domain.service.implementation.DefaultMoveValidator
 import dev.fbaldhagen.tectonic.domain.service.implementation.DefaultPuzzleGenerator
 import dev.fbaldhagen.tectonic.domain.service.implementation.DefaultPuzzleSeedProvider
@@ -30,6 +32,7 @@ import dev.fbaldhagen.tectonic.domain.usecase.GetCurrentGameUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.GetGameHistoryUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.GetGameUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.GetInProgressGameUseCase
+import dev.fbaldhagen.tectonic.domain.usecase.GetStatisticsUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.MakeMoveUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.StartNewGameUseCase
 import dev.fbaldhagen.tectonic.domain.usecase.UndoMoveUseCase
@@ -123,6 +126,17 @@ object AppDomainModule {
     fun provideGetInProgressGameUseCase(
         gameHistoryRepository: GameHistoryRepository
     ): GetInProgressGameUseCase = GetInProgressGameUseCase(gameHistoryRepository)
+
+    @Provides
+    fun provideGameStatisticsCalculator(): GameStatisticsCalculator =
+        DefaultGameStatisticsCalculator()
+
+    @Provides
+    fun provideGetStatisticsUseCase(
+        gameHistoryRepository: GameHistoryRepository,
+        calculator: GameStatisticsCalculator,
+        clock: DomainClock
+    ): GetStatisticsUseCase = GetStatisticsUseCase(gameHistoryRepository, calculator, clock)
 
     @Provides
     fun provideGetGameHistoryUseCase(
