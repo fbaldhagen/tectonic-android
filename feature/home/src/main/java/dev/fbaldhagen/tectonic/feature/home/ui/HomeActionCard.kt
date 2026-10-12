@@ -36,6 +36,7 @@ import dev.fbaldhagen.tectonic.feature.home.R
 import dev.fbaldhagen.tectonic.feature.home.presentation.HomeAction
 import dev.fbaldhagen.tectonic.feature.home.presentation.HomeInProgressGameUiModel
 import dev.fbaldhagen.tectonic.feature.home.presentation.HomeUiState
+import dev.fbaldhagen.tectonic.ui.color.difficultyHue
 import dev.fbaldhagen.tectonic.ui.text.toUiText
 
 /**
