@@ -19,17 +19,17 @@ internal data class DifficultyProfile(
     companion object {
         fun of(difficulty: Difficulty): DifficultyProfile = when (difficulty) {
             Difficulty.EASY -> DifficultyProfile(
-                gridSize = GridSize(5, 5),
+                gridSize = difficulty.gridSize,
                 clueRatio = 0.55..0.72,
                 requiresLogicalSolution = true
             )
             Difficulty.MEDIUM -> DifficultyProfile(
-                gridSize = GridSize(6, 6),
+                gridSize = difficulty.gridSize,
                 clueRatio = 0.40..0.55,
                 requiresLogicalSolution = true
             )
             Difficulty.HARD -> DifficultyProfile(
-                gridSize = GridSize(8, 8),
+                gridSize = difficulty.gridSize,
                 clueRatio = 0.28..0.40,
                 requiresLogicalSolution = false
             )
