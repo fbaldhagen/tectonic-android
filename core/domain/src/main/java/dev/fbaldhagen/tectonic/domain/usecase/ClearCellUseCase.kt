@@ -7,13 +7,15 @@ import dev.fbaldhagen.tectonic.domain.model.Game
 import dev.fbaldhagen.tectonic.domain.model.GameId
 import dev.fbaldhagen.tectonic.domain.model.GameStatus
 import dev.fbaldhagen.tectonic.domain.repository.GameProgressRepository
+import kotlin.time.Duration
 
 class ClearCellUseCase(
     private val gameProgressRepository: GameProgressRepository
 ) {
     suspend operator fun invoke(
         gameId: GameId,
-        cellId: CellId
+        cellId: CellId,
+        elapsed: Duration
     ): TecResult<Game> {
         return when (val result = gameProgressRepository.getGame(gameId)) {
             is TecResult.Success -> {
@@ -36,7 +38,7 @@ class ClearCellUseCase(
                     values = game.state.values + (cellId to null)
                 )
 
-                val updatedGame = game.copy(state = updatedState)
+                val updatedGame = game.copy(state = updatedState, elapsed = maxOf(game.elapsed, elapsed))
 
                 when (val saveResult = gameProgressRepository.saveGame(updatedGame)) {
                     is TecResult.Success -> TecResult.Success(updatedGame)

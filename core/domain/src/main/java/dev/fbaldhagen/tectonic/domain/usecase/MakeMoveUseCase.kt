@@ -13,6 +13,7 @@ import dev.fbaldhagen.tectonic.domain.repository.GameProgressRepository
 import dev.fbaldhagen.tectonic.domain.service.DomainClock
 import dev.fbaldhagen.tectonic.domain.service.MoveValidator
 import dev.fbaldhagen.tectonic.domain.service.SolutionChecker
+import kotlin.time.Duration
 
 class MakeMoveUseCase(
     private val gameProgressRepository: GameProgressRepository,
@@ -20,10 +21,15 @@ class MakeMoveUseCase(
     private val solutionChecker: SolutionChecker,
     private val clock: DomainClock
 ) {
+    /**
+     * [elapsed] is the caller's active play time at the moment of the move. It is stored together
+     * with the move, and becomes the game's duration if the move completes it.
+     */
     suspend operator fun invoke(
         gameId: GameId,
         cellId: CellId,
-        value: Int
+        value: Int,
+        elapsed: Duration
     ): TecResult<Game> {
         return when (val result = gameProgressRepository.getGame(gameId)) {
             is TecResult.Success -> {
@@ -56,7 +62,9 @@ class MakeMoveUseCase(
                     moves = game.state.moves + move
                 )
 
-                val updatedGame = game.copy(state = updatedState).completedIfSolved()
+                val updatedGame = game
+                    .copy(state = updatedState, elapsed = maxOf(game.elapsed, elapsed))
+                    .completedIfSolved()
 
                 when (val saveResult = gameProgressRepository.saveGame(updatedGame)) {
                     is TecResult.Success -> TecResult.Success(updatedGame)
@@ -78,7 +86,7 @@ class MakeMoveUseCase(
             // Mistakes and hints are not tracked yet, so they are always zero.
             result = GameResult(
                 completedAt = completedAt,
-                duration = completedAt - startedAt,
+                duration = elapsed,
                 mistakes = 0,
                 hintsUsed = 0
             )
