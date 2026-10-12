@@ -25,12 +25,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
-import dev.fbaldhagen.tectonic.designsystem.theme.TecTheme
 import dev.fbaldhagen.tectonic.domain.model.Difficulty
+import dev.fbaldhagen.tectonic.ui.color.difficultyHue
 import dev.fbaldhagen.tectonic.ui.text.toUiText
 
 /**
@@ -114,19 +113,6 @@ internal fun HomeDifficultyCard(
                 modifier = Modifier.size(18.dp),
             )
         }
-    }
-}
-
-/** Green, amber and rose read as easy, medium and hard; they come from the region palette. */
-@Composable
-internal fun difficultyHue(difficulty: Difficulty): Color {
-    val index = when (difficulty) {
-        Difficulty.EASY -> 1
-        Difficulty.MEDIUM -> 2
-        Difficulty.HARD -> 3
-    }
-    return TecTheme.extendedColors.regionHues.getOrElse(index) {
-        MaterialTheme.colorScheme.surfaceVariant
     }
 }
 
