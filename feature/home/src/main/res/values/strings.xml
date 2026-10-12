@@ -1,13 +1,17 @@
 <resources>
     <string name="home_app_name">Tectonic</string>
+    <string name="home_tagline">Fill every region. Keep equal numbers apart.</string>
     <string name="home_play">Play</string>
     <string name="home_generating">Generating puzzle…</string>
     <string name="home_continue">Continue</string>
     <string name="home_new_game">New game</string>
+    <string name="home_difficulty_label">Choose a difficulty</string>
+    <string name="home_in_progress">Game in progress</string>
+    <string name="home_game_summary">%1$s · %2$s</string>
     <string name="home_history">History</string>
+    <string name="home_history_subtitle">Review your finished games</string>
     <string name="home_statistics">Statistics</string>
     <string name="home_settings">Settings</string>
-    <string name="home_game_summary">%1$s · %2$s</string>
     <string name="home_abandon_title">Abandon current game?</string>
     <string name="home_abandon_message">It will be saved to your history as abandoned. You can then start a new game.</string>
     <string name="home_abandon_confirm">Abandon</string>
