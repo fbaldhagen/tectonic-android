@@ -1,6 +1,34 @@
 <resources>
     <string name="statistics_title">Statistics</string>
     <string name="statistics_back">Back</string>
-    <string name="statistics_coming_soon_title">Coming soon</string>
-    <string name="statistics_coming_soon_description">Your play statistics will appear here.</string>
+    <string name="statistics_filter_all">All</string>
+    <string name="statistics_empty_title">No finished games yet</string>
+    <string name="statistics_empty_description">Finish or abandon a game and your statistics will show up here.</string>
+
+    <string name="statistics_overview_title">Overview</string>
+    <string name="statistics_played">Played</string>
+    <string name="statistics_completed">Completed</string>
+    <string name="statistics_abandoned">Abandoned</string>
+    <string name="statistics_completion_rate">Completion rate</string>
+    <string name="statistics_total_time">Total time</string>
+    <string name="statistics_percent">%1$d%%</string>
+    <string name="statistics_no_value">-</string>
+
+    <string name="statistics_times_title">Solve times</string>
+    <string name="statistics_times_best">Best</string>
+    <string name="statistics_times_average">Average</string>
+
+    <string name="statistics_streaks_title">Streaks</string>
+    <string name="statistics_streak_current">Current</string>
+    <string name="statistics_streak_longest">Longest</string>
+    <plurals name="statistics_days">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+
+    <string name="statistics_trend_title">Recent solve times</string>
+    <string name="statistics_trend_pick_difficulty">Pick a difficulty to see how your solve times develop.</string>
+    <string name="statistics_trend_empty">Complete a game to start your trend.</string>
+    <string name="statistics_trend_caption">Last %1$d games</string>
+    <string name="statistics_trend_description">Solve time trend over your last %1$d games, most recent %2$s</string>
 </resources>
