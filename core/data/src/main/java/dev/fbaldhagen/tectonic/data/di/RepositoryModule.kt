@@ -6,9 +6,11 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.fbaldhagen.tectonic.data.repository.GameHistoryRepositoryImpl
 import dev.fbaldhagen.tectonic.data.repository.GameProgressRepositoryImpl
+import dev.fbaldhagen.tectonic.data.repository.GameTimeRepositoryImpl
 import dev.fbaldhagen.tectonic.data.repository.PuzzleRepositoryImpl
 import dev.fbaldhagen.tectonic.domain.repository.GameHistoryRepository
 import dev.fbaldhagen.tectonic.domain.repository.GameProgressRepository
+import dev.fbaldhagen.tectonic.domain.repository.GameTimeRepository
 import dev.fbaldhagen.tectonic.domain.repository.PuzzleRepository
 import javax.inject.Singleton
 
@@ -27,6 +29,12 @@ abstract class RepositoryModule {
     abstract fun bindGameProgressRepository(
         impl: GameProgressRepositoryImpl
     ): GameProgressRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindGameTimeRepository(
+        impl: GameTimeRepositoryImpl
+    ): GameTimeRepository
 
     @Binds
     @Singleton

@@ -37,6 +37,10 @@ interface GameDao {
     )
     suspend fun getSummaries(statuses: List<String>): List<GameSummaryProjection>
 
+    /** Touches only the clock column, and never lowers it. Leaves the board and ordering alone. */
+    @Query("UPDATE games SET elapsedMillis = MAX(elapsedMillis, :elapsedMillis) WHERE id = :id")
+    suspend fun updateElapsed(id: String, elapsedMillis: Long)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(entity: GameEntity)
 
