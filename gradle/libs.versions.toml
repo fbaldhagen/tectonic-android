@@ -5,6 +5,9 @@ kotlin = "2.4.20"
 jvmTarget = "17"
 ksp = "2.3.9"
 
+# Splash screen
+androidx-core-splashscreen = "1.2.0"
+
 # AndroidX core
 coreKtx = "1.19.1"
 lifecycle = "2.11.0"
@@ -44,6 +47,9 @@ androidx-activity-compose = { group = "androidx.activity", name = "activity-comp
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "runtime" }
+
+# Splash
+androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidx-core-splashscreen" }
 
 # Compose
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }

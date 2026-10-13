@@ -51,6 +51,9 @@ dependencies {
     implementation(project(":feature:statistics"))
     implementation(project(":feature:history"))
 
+    // Splash
+    implementation(libs.androidx.core.splashscreen)
+
     // DI
     ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.android)

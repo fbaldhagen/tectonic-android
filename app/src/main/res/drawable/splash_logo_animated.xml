@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector android:width="240dp" android:height="240dp" android:viewportWidth="240" android:viewportHeight="240">
+            <group android:name="plate1_group" android:pivotX="94.24" android:pivotY="88.64" android:scaleX="0.9" android:scaleY="0.9">
+                <path android:name="plate1" android:fillColor="@color/splash_plate_neutral" android:pathData="M81.7,66.24h25.09a9.86,9.86 0 0 1 9.86,9.86v25.09a9.86,9.86 0 0 1 -9.86,9.86h-25.09a9.86,9.86 0 0 1 -9.86,-9.86v-25.09a9.86,9.86 0 0 1 9.86,-9.86z"/>
+            </group>
+            <group android:name="plate3_group" android:pivotX="94.24" android:pivotY="140.16" android:scaleX="0.9" android:scaleY="0.9">
+                <path android:name="plate3" android:fillColor="@color/splash_plate_neutral" android:pathData="M81.7,117.76h25.09a9.86,9.86 0 0 1 9.86,9.86v25.09a9.86,9.86 0 0 1 -9.86,9.86h-25.09a9.86,9.86 0 0 1 -9.86,-9.86v-25.09a9.86,9.86 0 0 1 9.86,-9.86z"/>
+            </group>
+            <group android:name="right_column">
+                <group android:name="plate2_group" android:pivotX="145.76" android:pivotY="88.64" android:scaleX="0.9" android:scaleY="0.9">
+                    <path android:name="plate2" android:fillColor="@color/splash_plate_neutral" android:pathData="M133.22,66.24h25.09a9.86,9.86 0 0 1 9.86,9.86v25.09a9.86,9.86 0 0 1 -9.86,9.86h-25.09a9.86,9.86 0 0 1 -9.86,-9.86v-25.09a9.86,9.86 0 0 1 9.86,-9.86z"/>
+                </group>
+                <group android:name="plate4_group" android:pivotX="145.76" android:pivotY="140.16" android:scaleX="0.9" android:scaleY="0.9">
+                    <path android:name="plate4" android:fillColor="@color/splash_plate_neutral" android:pathData="M133.22,117.76h25.09a9.86,9.86 0 0 1 9.86,9.86v25.09a9.86,9.86 0 0 1 -9.86,9.86h-25.09a9.86,9.86 0 0 1 -9.86,-9.86v-25.09a9.86,9.86 0 0 1 9.86,-9.86z"/>
+                </group>
+            </group>
+        </vector>
+    </aapt:attr>
+    <target android:name="plate1">
+        <aapt:attr name="android:animation">
+            <objectAnimator android:propertyName="fillColor" android:startOffset="80" android:duration="280" android:valueFrom="@color/splash_plate_neutral" android:valueTo="@color/splash_plate_primary" android:valueType="colorType" android:interpolator="@android:interpolator/fast_out_slow_in"/>
+        </aapt:attr>
+    </target>
+    <target android:name="plate1_group">
+        <aapt:attr name="android:animation">
+            <set android:ordering="together">
+                <objectAnimator android:propertyName="scaleX" android:startOffset="80" android:duration="280" android:valueFrom="0.9" android:valueTo="1" android:valueType="floatType" android:interpolator="@android:anim/overshoot_interpolator"/>
+                <objectAnimator android:propertyName="scaleY" android:startOffset="80" android:duration="280" android:valueFrom="0.9" android:valueTo="1" android:valueType="floatType" android:interpolator="@android:anim/overshoot_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="plate2">
+        <aapt:attr name="android:animation">
+            <objectAnimator android:propertyName="fillColor" android:startOffset="220" android:duration="280" android:valueFrom="@color/splash_plate_neutral" android:valueTo="@color/splash_plate_secondary" android:valueType="colorType" android:interpolator="@android:interpolator/fast_out_slow_in"/>
+        </aapt:attr>
+    </target>
+    <target android:name="plate2_group">
+        <aapt:attr name="android:animation">
+            <set android:ordering="together">
+                <objectAnimator android:propertyName="scaleX" android:startOffset="220" android:duration="280" android:valueFrom="0.9" android:valueTo="1" android:valueType="floatType" android:interpolator="@android:anim/overshoot_interpolator"/>
+                <objectAnimator android:propertyName="scaleY" android:startOffset="220" android:duration="280" android:valueFrom="0.9" android:valueTo="1" android:valueType="floatType" android:interpolator="@android:anim/overshoot_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="plate3">
+        <aapt:attr name="android:animation">
+            <objectAnimator android:propertyName="fillColor" android:startOffset="360" android:duration="280" android:valueFrom="@color/splash_plate_neutral" android:valueTo="@color/splash_plate_tertiary" android:valueType="colorType" android:interpolator="@android:interpolator/fast_out_slow_in"/>
+        </aapt:attr>
+    </target>
+    <target android:name="plate3_group">
+        <aapt:attr name="android:animation">
+            <set android:ordering="together">
+                <objectAnimator android:propertyName="scaleX" android:startOffset="360" android:duration="280" android:valueFrom="0.9" android:valueTo="1" android:valueType="floatType" android:interpolator="@android:anim/overshoot_interpolator"/>
+                <objectAnimator android:propertyName="scaleY" android:startOffset="360" android:duration="280" android:valueFrom="0.9" android:valueTo="1" android:valueType="floatType" android:interpolator="@android:anim/overshoot_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="plate4">
+        <aapt:attr name="android:animation">
+            <objectAnimator android:propertyName="fillColor" android:startOffset="500" android:duration="280" android:valueFrom="@color/splash_plate_neutral" android:valueTo="@color/splash_plate_container" android:valueType="colorType" android:interpolator="@android:interpolator/fast_out_slow_in"/>
+        </aapt:attr>
+    </target>
+    <target android:name="plate4_group">
+        <aapt:attr name="android:animation">
+            <set android:ordering="together">
+                <objectAnimator android:propertyName="scaleX" android:startOffset="500" android:duration="280" android:valueFrom="0.9" android:valueTo="1" android:valueType="floatType" android:interpolator="@android:anim/overshoot_interpolator"/>
+                <objectAnimator android:propertyName="scaleY" android:startOffset="500" android:duration="280" android:valueFrom="0.9" android:valueTo="1" android:valueType="floatType" android:interpolator="@android:anim/overshoot_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="right_column">
+        <aapt:attr name="android:animation">
+            <objectAnimator android:propertyName="translateY" android:startOffset="740" android:duration="240" android:valueFrom="0" android:valueTo="11.20" android:valueType="floatType" android:interpolator="@android:interpolator/fast_out_slow_in"/>
+        </aapt:attr>
+    </target>
+</animated-vector>

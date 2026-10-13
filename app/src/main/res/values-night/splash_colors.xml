@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="splash_background">#120F1C</color>
+    <color name="splash_plate_neutral">#463F63</color>
+    <color name="splash_plate_primary">#9B86F5</color>
+    <color name="splash_plate_secondary">#B8B3D6</color>
+    <color name="splash_plate_tertiary">#C7A8FF</color>
+    <color name="splash_plate_container">#2E2555</color>
+</resources>
