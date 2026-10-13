@@ -13,6 +13,12 @@ sealed interface PuzzleAction {
     data object Undo : PuzzleAction
     data class StartNewGame(val difficulty: Difficulty) : PuzzleAction
     data object DismissMessage : PuzzleAction
+
+    /** The puzzle screen is in the foreground: the clock may run. */
+    data object ScreenResumed : PuzzleAction
+
+    /** The puzzle screen left the foreground: stop the clock and save it. */
+    data object ScreenPaused : PuzzleAction
 }
 
 data class PuzzleMoveValidationUiModel(
@@ -31,6 +37,7 @@ data class PuzzleUiState(
     val difficulty: Difficulty? = null,
     val grid: TecBoardUiModel? = null,
     val isCompleted: Boolean = false,
+    val elapsed: Duration = Duration.ZERO,
     val completionTime: Duration? = null,
     val canUndo: Boolean = false,
     val selectedCell: CellId? = null,

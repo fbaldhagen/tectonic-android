@@ -3,6 +3,7 @@
     <string name="puzzle_undo">Undo</string>
     <string name="puzzle_erase">Erase</string>
     <string name="puzzle_new_game">New game</string>
+    <string name="puzzle_elapsed_description">Elapsed time %1$s</string>
     <string name="puzzle_invalid_move">That move violates a puzzle rule.</string>
     <string name="puzzle_completed_title">Puzzle solved</string>
     <string name="puzzle_completed_time">Time: %1$s</string>

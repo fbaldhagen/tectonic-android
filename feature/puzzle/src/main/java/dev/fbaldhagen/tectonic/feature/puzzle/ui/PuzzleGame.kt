@@ -31,6 +31,7 @@ internal fun PuzzleGame(
     Column(modifier = modifier.fillMaxSize()) {
         PuzzleHeader(
             difficulty = state.difficulty,
+            elapsed = state.elapsed,
             onBackClick = onNavigateHome,
             onNewGameClick = { onAction(PuzzleAction.StartNewGame(it)) },
         )
