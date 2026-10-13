@@ -27,6 +27,10 @@ object HistoryEntryProviderModule {
             GameReviewScreen(
                 gameId = key.gameId,
                 onNavigateBack = { navigator.goBack() },
+                onPlayAgainStarted = {
+                    navigator.replaceStack(AppNavKey.Home)
+                    navigator.navigate(AppNavKey.Puzzle)
+                },
             )
         }
     }

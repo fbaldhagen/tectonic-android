@@ -4,10 +4,25 @@
     <string name="history_empty_title">No games yet</string>
     <string name="history_empty_description">Finished games will show up here.</string>
     <string name="history_row_title">%1$s · %2$s</string>
-    <string name="history_completed_icon">Completed</string>
-    <string name="history_abandoned_icon">Abandoned</string>
-    <string name="review_status">Status</string>
-    <string name="review_time">Time</string>
+    <string name="history_section_today">Today</string>
+    <string name="history_section_yesterday">Yesterday</string>
+    <string name="history_section_this_week">This week</string>
+    <string name="history_best">Best</string>
+
+    <string name="review_your_time">Your time</string>
+    <string name="review_not_finished">Not finished</string>
+    <string name="review_personal_best">Personal best</string>
+    <string name="review_slower_than_best">%1$s slower than your best</string>
+    <string name="review_faster_than_average">%1$s faster than average</string>
+    <string name="review_slower_than_average">%1$s slower than average</string>
+    <string name="review_on_par_with_average">On par with your average</string>
+    <string name="review_first_game">First completed %1$s game</string>
     <string name="review_date">Date</string>
     <string name="review_grid">Grid</string>
+    <string name="review_play_again">Play again</string>
+    <string name="review_generating">Generating puzzle…</string>
+    <string name="review_abandon_title">Abandon current game?</string>
+    <string name="review_abandon_message">It will be saved to your history as abandoned, and a new game will start.</string>
+    <string name="review_abandon_confirm">Abandon and play</string>
+    <string name="review_abandon_cancel">Cancel</string>
 </resources>
