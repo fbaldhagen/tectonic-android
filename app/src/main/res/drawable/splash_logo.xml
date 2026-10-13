@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="200dp" android:height="200dp" android:viewportWidth="240" android:viewportHeight="240">
+    
+    
+    <path android:name="plate1" android:fillColor="@color/splash_plate_primary" android:pathData="M81.7,66.24h25.09a9.86,9.86 0 0 1 9.86,9.86v25.09a9.86,9.86 0 0 1 -9.86,9.86h-25.09a9.86,9.86 0 0 1 -9.86,-9.86v-25.09a9.86,9.86 0 0 1 9.86,-9.86z"/>
+    
+    
+    <path android:name="plate2" android:fillColor="@color/splash_plate_secondary" android:pathData="M133.22,77.44h25.09a9.86,9.86 0 0 1 9.86,9.86v25.09a9.86,9.86 0 0 1 -9.86,9.86h-25.09a9.86,9.86 0 0 1 -9.86,-9.86v-25.09a9.86,9.86 0 0 1 9.86,-9.86z"/>
+    
+    
+    <path android:name="plate3" android:fillColor="@color/splash_plate_tertiary" android:pathData="M81.7,117.76h25.09a9.86,9.86 0 0 1 9.86,9.86v25.09a9.86,9.86 0 0 1 -9.86,9.86h-25.09a9.86,9.86 0 0 1 -9.86,-9.86v-25.09a9.86,9.86 0 0 1 9.86,-9.86z"/>
+    
+    
+    <path android:name="plate4" android:fillColor="@color/splash_plate_container" android:pathData="M133.22,128.96h25.09a9.86,9.86 0 0 1 9.86,9.86v25.09a9.86,9.86 0 0 1 -9.86,9.86h-25.09a9.86,9.86 0 0 1 -9.86,-9.86v-25.09a9.86,9.86 0 0 1 9.86,-9.86z"/>
+    
+
+</vector>
