@@ -15,15 +15,28 @@ data class GameReviewUiModel(
     val status: GameStatus,
     val duration: Duration?,
     val date: Instant,
+    /** Null when the game was not completed, or when no comparison could be made. */
+    val comparison: TimeComparison?,
 )
 
 data class GameReviewUiState(
     val isLoading: Boolean = true,
     val review: GameReviewUiModel? = null,
     val error: UiText? = null,
+    val isStartingGame: Boolean = false,
+    val isAbandonDialogVisible: Boolean = false,
+    /** A problem starting a new game, shown by the Play again button. */
+    val playAgainError: UiText? = null,
 )
 
 sealed interface GameReviewAction {
     data class Load(val gameId: String) : GameReviewAction
     data object Retry : GameReviewAction
+    data object PlayAgain : GameReviewAction
+    data object AbandonConfirmed : GameReviewAction
+    data object AbandonDismissed : GameReviewAction
+}
+
+sealed interface GameReviewEvent {
+    data object NavigateToPuzzle : GameReviewEvent
 }
